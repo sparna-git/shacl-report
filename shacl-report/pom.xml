@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>nakala-report</groupId>
-  <artifactId>fr.sparna.rdf.nakala.report</artifactId>
+  <groupId>shacl-report</groupId>
+  <artifactId>fr.sparna.rdf.shacl.report</artifactId>
   <version>0.0.1</version>
-  <name>nakala-report</name>
+  <name>shacl-report</name>
   <repositories>
         <!-- points to the local repository containing dependencies -->
         <repository>
@@ -13,7 +13,7 @@
         </repository>
 
     </repositories>
-	<description>nakala-report parser</description>
+	<description></description>
 	<properties>
         <rdf4j-version>2.2.1</rdf4j-version>
         <jackson-version>2.9.3</jackson-version>
