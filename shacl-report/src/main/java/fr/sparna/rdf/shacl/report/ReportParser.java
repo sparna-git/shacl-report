@@ -1,4 +1,4 @@
-package fr.sparna.rdf.nakala.report;
+package fr.sparna.rdf.shacl.report;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package fr.sparna.rdf.nakala.report;
+package fr.sparna.rdf.shacl.report;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,4 +1,4 @@
-package fr.sparna.rdf.nakala.report;
+package fr.sparna.rdf.shacl.report;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.MissingCommandException;

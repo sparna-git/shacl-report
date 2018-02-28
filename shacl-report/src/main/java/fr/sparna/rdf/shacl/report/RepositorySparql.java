@@ -1,4 +1,4 @@
-package fr.sparna.rdf.nakala.report;
+package fr.sparna.rdf.shacl.report;
 
 import java.io.IOException;
 import java.io.InputStream;
