@@ -7,24 +7,92 @@
   <name>shacl-report</name>
 	<description></description>
 	<properties>
-        <rdf4j-version>2.2.1</rdf4j-version>
-        <jackson-version>2.9.3</jackson-version>
-        <jtwig-version>5.86.1.RELEASE</jtwig-version>
-    </properties>
+      <rdf4j-version>2.5.1</rdf4j-version>
+      <jackson-version>2.9.3</jackson-version>
+      <jtwig-version>5.86.1.RELEASE</jtwig-version>
+  </properties>
     
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>2.5.1</version>
+              <configuration>
+                  <source>1.8</source>
+                  <target>1.8</target>
+              </configuration>
+          </plugin>
+
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>1.3.2</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>shade</goal>
+                </goals>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                  <shadedArtifactAttached>true</shadedArtifactAttached>
+                  <shadedClassifierName>onejar</shadedClassifierName>              
+                  <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <manifestEntries>
+                    <Main-Class>fr.sparna.rdf.shacl.report.Main</Main-Class>
+                    <Class-Path>.</Class-Path>
+                  </manifestEntries>
+                </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                      <resource>META-INF/services/org.eclipse.rdf4j.query.algebra.evaluation.function.Function</resource>
+                    </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                      <resource>META-INF/services/org.eclipse.rdf4j.query.parser.QueryParserFactory</resource>
+                    </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                      <resource>META-INF/services/org.eclipse.rdf4j.query.resultio.BooleanQueryResultParserFactory</resource>
+                    </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                      <resource>META-INF/services/org.eclipse.rdf4j.query.resultio.BooleanQueryResultWriterFactory</resource>
+                    </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                      <resource>META-INF/services/org.eclipse.rdf4j.query.resultio.TupleQueryResultParserFactory</resource>
+                    </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                      <resource>META-INF/services/org.eclipse.rdf4j.query.resultio.TupleQueryResultWriterFactory</resource>
+                    </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                      <resource>META-INF/services/org.eclipse.rdf4j.repository.config.RepositoryFactory</resource>
+                    </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                      <resource>META-INF/services/org.eclipse.rdf4j.rio.RDFParserFactory</resource>
+                    </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                      <resource>META-INF/services/org.eclipse.rdf4j.rio.RDFWriterFactory</resource>
+                    </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                      <resource>META-INF/services/org.eclipse.rdf4j.sail.config.SailFactory</resource>
+                    </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                      <resource>META-INF/services/org.eclipse.rdf4j.sail.rdbms.RdbmsProvider</resource>
+                    </transformer>
+                    <!-- accumulation des schemas Spring -->
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                  <resource>META-INF/spring.handlers</resource>
+                </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                  <resource>META-INF/spring.schemas</resource>
+                </transformer>
+                  </transformers>
                 </configuration>
-            </plugin>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
     </build>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.beust</groupId>
@@ -32,48 +100,40 @@
 			<version>1.72</version>
 		</dependency>
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-core</artifactId>
-		     <version>${jackson-version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>${jackson-version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.jtwig</groupId>
 			<artifactId>jtwig-core</artifactId>
 			<version>${jtwig-version}</version>
 		</dependency>
 		<dependency>
-            <groupId>org.eclipse.rdf4j</groupId>
-            <artifactId>rdf4j-runtime</artifactId>
-            <version>${rdf4j-version}</version>
-        </dependency>
-        <!-- Testing: JUnit -->
+        <groupId>org.eclipse.rdf4j</groupId>
+        <artifactId>rdf4j-runtime</artifactId>
+        <version>${rdf4j-version}</version>
+    </dependency>
+    <!-- Testing: JUnit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
-            <scope>test</scope>
+      <scope>test</scope>
 		</dependency>
-         <dependency>
-             <groupId>fr.sparna.rdf</groupId>
-             <artifactId>rdf4j-toolkit</artifactId>
-             <version>0.1</version>
-         </dependency>
-         
-         <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.7.5</version>
-          </dependency>
-            <dependency> 
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.5</version>
-            </dependency>
+    <!-- Logging -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.25</version>
+    </dependency>
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.2.3</version>
+    </dependency>
+
+    <!-- Commons IO -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.6</version>
+    </dependency>
             
 	</dependencies>
 </project>

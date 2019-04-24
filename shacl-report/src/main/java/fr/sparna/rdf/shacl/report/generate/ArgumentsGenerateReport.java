@@ -1,8 +1,8 @@
-package fr.sparna.rdf.shacl.report;
+package fr.sparna.rdf.shacl.report.generate;
 
 import com.beust.jcommander.Parameter;
 
-public class ArgumentsReportCli {
+public class ArgumentsGenerateReport {
 
 	@Parameter(
 			names = { "-i", "--input" },

@@ -1,6 +1,6 @@
-package fr.sparna.rdf.shacl.report;
+package fr.sparna.rdf.shacl.report.generate;
 
-public class Result {
+public class ValidationResult {
 
 	protected String focusNode;
 	protected String resultMessage;

@@ -1,0 +1,13 @@
+PREFIX shacl:   <http://www.w3.org/ns/shacl#>
+
+SELECT ?message ?nodeUri ?sourceShape ?resultPath ?resultSeverity ?sourceConstraintComponent ?value
+WHERE {
+	?s a shacl:ValidationResult;
+		shacl:focusNode ?nodeUri;
+		shacl:resultMessage ?message;
+		shacl:resultPath ?resultPath;
+		shacl:resultSeverity ?resultSeverity;
+		shacl:sourceConstraintComponent ?sourceConstraintComponent;
+		shacl:value ?value;
+		shacl:sourceShape ?sourceShape .
+}

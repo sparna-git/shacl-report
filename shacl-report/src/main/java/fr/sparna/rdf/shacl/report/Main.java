@@ -4,12 +4,14 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.MissingCommandException;
 import com.beust.jcommander.ParameterException;
 
+import fr.sparna.rdf.shacl.report.generate.ArgumentsGenerateReport;
+import fr.sparna.rdf.shacl.report.generate.GenerateReport;
+
 public class Main {
 
 	enum COMMAND {		
 
-		REPORT(new ArgumentsReportCli(), new Report());
-		
+		GENERATE(new ArgumentsGenerateReport(), new GenerateReport());		
 
 		private ReportCliCommandIfc command;
 		private Object arguments;
