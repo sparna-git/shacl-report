@@ -1,0 +1,724 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://data.sre.lu/ontology/sreonto#Authorisation-authorisedBy>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Membership> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#authorisedBy> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageBelongsToActivity>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Activity> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageBelongsToActivity> .
+
+<http://data.sre.lu/ontology/sreonto#Operation-operationTitle>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#operationTitle> .
+
+<http://data.sre.lu/ontology/sreonto#AuthorisationRequest-authorisationRequestDate>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#authorisationRequestDate> .
+
+<http://data.sre.lu/ontology/sreonto#Selector-selectorType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#SelectorType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#selectorType> .
+
+<http://data.sre.lu/ontology/sreonto#Authorisation-authorisationHasOrigin>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#AuthorisationRequest> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#authorisationHasOrigin> .
+
+<http://data.sre.lu/ontology/sreonto#OutgoingMessageComCenter-outgoingMessageComCenterNetwork>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#CommunicationCenterNetwork> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#outgoingMessageComCenterNetwork> .
+
+<http://data.sre.lu/ontology/sreonto#Activity-activityHasResult>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#ActivityResult> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#activityHasResult> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessageComCenter>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#IncomingMessageComCenter-incomingMessageComCenterLuxClassificationLevel> , <http://data.sre.lu/ontology/sreonto#IncomingMessageComCenter-incomingMessageComCenterSender> , <http://data.sre.lu/ontology/sreonto#IncomingMessageComCenter-incomingMessageComCenterNetwork> , <http://data.sre.lu/ontology/sreonto#IncomingMessageComCenter-incomingMessageComCenterWorkGroup> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageHasComment>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Comment> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageHasComment> .
+
+<http://data.sre.lu/ontology/sreonto#ActivityResult-activityResultDate>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#activityResultDate> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageComCenterRelatedDocSharePointURL>
+        a         sh:PropertyShape ;
+        sh:class  xsd:anyURI ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#incomingMessageComCenterRelatedDocSharePointURL> .
+
+<http://data.sre.lu/ontology/sreonto#Task-taskTriggeredByActivity>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Activity> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#taskTriggeredByActivity> .
+
+<http://data.sre.lu/ontology/sreonto#Activity-activityHasStatus>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#ActivityStatus> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#activityHasStatus> .
+
+<http://data.sre.lu/ontology/sreonto#Comment>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#Comment-commentText> , <http://data.sre.lu/ontology/sreonto#Comment-commentFromInternalOrganisationalUnit> .
+
+<http://data.sre.lu/ontology/sreonto#Activity-activyTriggersTask>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Task> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#activyTriggersTask> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageAbstract>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageAbstract> .
+
+<http://data.sre.lu/ontology/sreonto#OutgoingMessageComCenter-outgoingMessageComCenterSharePointURL>
+        a         sh:PropertyShape ;
+        sh:class  xsd:anyURI ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#outgoingMessageComCenterSharePointURL> .
+
+<http://data.sre.lu/ontology/sreonto#OutgoingMessage-outgoingMessageDispatchDate>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#outgoingMessageDispatchDate> .
+
+<http://data.sre.lu/ontology/sreonto#Comment-commentFromInternalOrganisationalUnit>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#InternalOrganisationalUnit> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#commentFromInternalOrganisationalUnit> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseIntegrationResult-databaseIntegrationIntoDatabase>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Database> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#databaseIntegrationIntoDatabase> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessageStatus-incomingMessageStatusType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#IncomingMessageStatusType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#incomingMessageStatusType> .
+
+<http://data.sre.lu/ontology/sreonto#Activity>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#Activity-activityResultStatus> , <http://data.sre.lu/ontology/sreonto#Activity-activityHasComment> , <http://data.sre.lu/ontology/sreonto#Activity-activyTriggersTask> , <http://data.sre.lu/ontology/sreonto#Activity-activityHasStatus> , <http://data.sre.lu/ontology/sreonto#Activity-activityHasResult> , <http://data.sre.lu/ontology/sreonto#Activity-activityUnderResponsibilityOf> , <http://data.sre.lu/ontology/sreonto#Activity-activityTriggersOutgoingMessage> , <http://data.sre.lu/ontology/sreonto#Activity-activityBelongsToDossier> , <http://data.sre.lu/ontology/sreonto#Activity-activityTriggeredByIncomingMessage> , <http://data.sre.lu/ontology/sreonto#Activity-activityHasIncomingMessage> , <http://data.sre.lu/ontology/sreonto#Activity-activityHasOutgoingMessage> , <http://data.sre.lu/ontology/sreonto#Activity-activityBelongsToTask> .
+
+<http://data.sre.lu/ontology/sreonto#ActivityResult-activityResultHasComment>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Comment> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#activityResultHasComment> .
+
+<http://data.sre.lu/ontology/sreonto#AuthorisationRequest-authorisationRequestTriggeredBy>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Activity> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#authorisationRequestTriggeredBy> .
+
+<http://data.sre.lu/ontology/sreonto#OutgoingMessageComCenter>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#OutgoingMessageComCenter-outgoingMessageComCenterRelatedDocSharePointURL> , <http://data.sre.lu/ontology/sreonto#OutgoingMessageComCenter-outgoingMessageComCenterNetwork> , <http://data.sre.lu/ontology/sreonto#OutgoingMessageComCenter-outgoingMessageComCenterLuxClassificationLevel> , <http://data.sre.lu/ontology/sreonto#OutgoingMessageComCenter-outgoingMessageComCenterSharePointURL> , <http://data.sre.lu/ontology/sreonto#OutgoingMessageComCenter-outgoingMessageComCenterRecipient> , <http://data.sre.lu/ontology/sreonto#OutgoingMessageComCenter-outgoingMessageComCenterWorkGroup> .
+
+<http://data.sre.lu/ontology/sreonto#OutgoingMessage-outgoingMessageHasStatus>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#OutgoingMessageStatus> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#outgoingMessageHasStatus> .
+
+<http://data.sre.lu/ontology/sreonto#OutgoingMessageStatus-outgoingMessageStatusType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#OutgoingMessageStatusType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#outgoingMessageStatusType> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessageComCenter-incomingMessageComCenterSender>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#CommunicationCenterService> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#incomingMessageComCenterSender> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageOrderNumberInDossier>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:integer ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#messageOrderNumberInDossier> .
+
+<http://data.sre.lu/ontology/sreonto#Activity-activityResultStatus>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#ActivityStatus> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#activityResultStatus> .
+
+<http://data.sre.lu/ontology/sreonto#Task-taskBelongsToDossier>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Dossier> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#taskBelongsToDossier> .
+
+<http://data.sre.lu/ontology/sreonto#InformationGatheringActivity>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#InformationGatheringActivity-informationGatheringResultType> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseVerificationResult-databaseVerificationResultType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#DatabaseVerificationResultType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#databaseVerificationResultType> .
+
+<http://data.sre.lu/ontology/sreonto#Task-taskHasAuthorisationDemand>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Authorisation> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#taskHasAuthorisationDemand> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessageComCenter-incomingMessageComCenterWorkGroup>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#CommunicationCenterWorkgroup> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#incomingMessageComCenterWorkGroup> .
+
+<http://data.sre.lu/ontology/sreonto#InformationGatheringActivity-informationGatheringResultType>
+        a        sh:PropertyShape ;
+        sh:path  <http://data.sre.lu/ontology/sreonto#informationGatheringResultType> .
+
+<http://data.sre.lu/ontology/sreonto#Event>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#Event-eventHasStatus> .
+
+<http://data.sre.lu/ontology/sreonto#OutgoingMessageComCenter-outgoingMessageComCenterWorkGroup>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#CommunicationCenterWorkgroup> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#outgoingMessageComCenterWorkGroup> .
+
+<http://data.sre.lu/ontology/sreonto#OutgoingMessage-outgoingMessageRecipient>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#ExternalOrganisationalUnit> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#outgoingMessageRecipient> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessageComCenter-incomingMessageComCenterNetwork>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#CommunicationCenterNetwork> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#incomingMessageComCenterNetwork> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageCategory>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#MessageCategory> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageCategory> .
+
+<http://data.sre.lu/ontology/sreonto#Dossier-dossierTitle>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#dossierTitle> .
+
+<http://data.sre.lu/ontology/sreonto#Message>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#Message-messageNetworkClassificationLevel> , <http://data.sre.lu/ontology/sreonto#Message-messageCreatedDate> , <http://data.sre.lu/ontology/sreonto#Message-messageLuxClassificationLevel> , <http://data.sre.lu/ontology/sreonto#Message-messageHasAnswer> , <http://data.sre.lu/ontology/sreonto#Message-messageDeadlineForReadingRequestedBySender> , <http://data.sre.lu/ontology/sreonto#Message-messageChannel> , <http://data.sre.lu/ontology/sreonto#Message-messageOrderNumberInDossier> , <http://data.sre.lu/ontology/sreonto#Message-messageAnswersToMessage> , <http://data.sre.lu/ontology/sreonto#Message-messageModifiedDate> , <http://data.sre.lu/ontology/sreonto#Message-messageHasRelatedDocument> , <http://data.sre.lu/ontology/sreonto#Message-messageCategory> , <http://data.sre.lu/ontology/sreonto#Message-messagePriorityLevel> , <http://data.sre.lu/ontology/sreonto#Message-messageBelongsToActivity> , <http://data.sre.lu/ontology/sreonto#Message-messageLegalNoticeType> , <http://data.sre.lu/ontology/sreonto#Message-messageInternalReferenceBackOffice> , <http://data.sre.lu/ontology/sreonto#Message-messageAbstract> , <http://data.sre.lu/ontology/sreonto#Message-messageExternalReference> , <http://data.sre.lu/ontology/sreonto#Message-messageInternalReferenceTechnical> , <http://data.sre.lu/ontology/sreonto#Message-incomingMessageHasStatus> , <http://data.sre.lu/ontology/sreonto#Message-messageTitle> , <http://data.sre.lu/ontology/sreonto#Message-messageMailingDate> , <http://data.sre.lu/ontology/sreonto#Message-messageBelongsToDossier> , <http://data.sre.lu/ontology/sreonto#Message-messageContentType> , <http://data.sre.lu/ontology/sreonto#Message-messageType> , <http://data.sre.lu/ontology/sreonto#Message-messageHasComment> , <http://data.sre.lu/ontology/sreonto#Message-messageInternalReferenceOfficial> , <http://data.sre.lu/ontology/sreonto#Message-messagePriorityTypeRequestedBySender> .
+
+<http://data.sre.lu/ontology/sreonto#Status-statusDate>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#statusDate> .
+
+<http://data.sre.lu/ontology/sreonto#Operation>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#Operation-operationUUID> , <http://data.sre.lu/ontology/sreonto#Operation-operationTitle> .
+
+<http://data.sre.lu/ontology/sreonto#Authorisation>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#Authorisation-authorisationHasOrigin> , <http://data.sre.lu/ontology/sreonto#Authorisation-authorisedBy> , <http://data.sre.lu/ontology/sreonto#Authorisation-authorisationDate> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageProcessingStatus>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#IncomingMessageStatus> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#incomingMessageProcessingStatus> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageNetworkClassificationLevel>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#NetworkClassificationLevel> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageNetworkClassificationLevel> .
+
+<http://data.sre.lu/ontology/sreonto#Dossier>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#Dossier-dossierUnderResponsibilityOfOrganisationalUnit> , <http://data.sre.lu/ontology/sreonto#Dossier-dossierHasMessage> , <http://data.sre.lu/ontology/sreonto#Dossier-dossierThematic> , <http://data.sre.lu/ontology/sreonto#Dossier-dossierId> , <http://data.sre.lu/ontology/sreonto#Dossier-dossierTitle> , <http://data.sre.lu/ontology/sreonto#Dossier-dossierHasReport> , <http://data.sre.lu/ontology/sreonto#Dossier-dossierHasGraphicalRepresentation> , <http://data.sre.lu/ontology/sreonto#Dossier-dossierBelongsToOperation> .
+
+<http://data.sre.lu/ontology/sreonto#Task-taskCompletnessDate>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#taskCompletnessDate> .
+
+<http://data.sre.lu/ontology/sreonto#Selector-selectorUsedBySubject>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Subject> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#selectorUsedBySubject> .
+
+<http://data.sre.lu/ontology/sreonto#TaskStatus-taskStatusType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#TaskStatusType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#taskStatusType> .
+
+<http://data.sre.lu/ontology/sreonto#Dossier-dossierBelongsToOperation>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Operation> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#dossierBelongsToOperation> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageDeadlineForReadingRequestedBySender>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#messageDeadlineForReadingRequestedBySender> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageExternalReference>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageExternalReference> .
+
+<http://data.sre.lu/ontology/sreonto#Activity-activityBelongsToDossier>
+        a            sh:PropertyShape ;
+        sh:class     <http://data.sre.lu/ontology/sreonto#Dossier> ;
+        sh:maxCount  1 ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#activityBelongsToDossier> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseIntegrationActivity-databaseIntegrationOf>
+        a        sh:PropertyShape ;
+        sh:path  <http://data.sre.lu/ontology/sreonto#databaseIntegrationOf> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageInternalReferenceOfficial>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageInternalReferenceOfficial> .
+
+<http://data.sre.lu/ontology/sreonto#AuthorisationRequest>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#AuthorisationRequest-authorisationType> , <http://data.sre.lu/ontology/sreonto#AuthorisationRequest-authorisationRequestDate> , <http://data.sre.lu/ontology/sreonto#AuthorisationRequest-authorisationRequestTriggeredBy> , <http://data.sre.lu/ontology/sreonto#AuthorisationRequest-authorisationRequestedFrom> .
+
+<http://data.sre.lu/ontology/sreonto#Authorisation-authorisationDate>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#authorisationDate> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessageStatus>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#IncomingMessageStatus-incomingMessageStatusType> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageSourceLabel>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#incomingMessageSourceLabel> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageRecipient>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#InternalOrganisationalUnit> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#incomingMessageRecipient> .
+
+[ <http://sparna.fr/ontologies/simple-owl2sh#mappedTo>
+          <http://data.sre.lu/ontology/sreonto#Activity-activityBelongsToDossier> ] .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageTitle>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageTitle> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageBelongsToDossier>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Dossier> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageBelongsToDossier> .
+
+<http://data.sre.lu/ontology/sreonto#Dossier-dossierThematic>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Thematic> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#dossierThematic> .
+
+<http://data.sre.lu/ontology/sreonto#Activity-activityBelongsToTask>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Task> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#activityBelongsToTask> .
+
+<http://data.sre.lu/ontology/sreonto#Selector-selectorTitle>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#selectorTitle> .
+
+<http://data.sre.lu/ontology/sreonto#Activity-activityHasIncomingMessage>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#IncomingMessage> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#activityHasIncomingMessage> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseIntegrationResult>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#DatabaseIntegrationResult-databaseIntegrationIntoDatabase> .
+
+<http://data.sre.lu/ontology/sreonto#ActivityResult>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#ActivityResult-activityResultHasComment> , <http://data.sre.lu/ontology/sreonto#ActivityResult-activityResultDate> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageCreatedDate>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#messageCreatedDate> .
+
+<http://data.sre.lu/ontology/sreonto#Message-incomingMessageHasStatus>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#IncomingMessageStatus> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#incomingMessageHasStatus> .
+
+<http://data.sre.lu/ontology/sreonto#Task-taskAssignmentDate>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#taskAssignmentDate> .
+
+<http://data.sre.lu/ontology/sreonto#ActivityStatus>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#ActivityStatus-activityStatus> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageAnsweringLimitDateGivenBySRE>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#incomingMessageAnsweringLimitDateGivenBySRE> .
+
+<http://data.sre.lu/ontology/sreonto#OutgoingMessageComCenter-outgoingMessageComCenterLuxClassificationLevel>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#LuxClassificationLevel> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#outgoingMessageComCenterLuxClassificationLevel> .
+
+<http://data.sre.lu/ontology/sreonto#AuthorisationRequest-authorisationRequestedFrom>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Membership> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#authorisationRequestedFrom> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseVerificationResult-verifiedDatabase>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Database> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#verifiedDatabase> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageInternalReferenceTechnical>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageInternalReferenceTechnical> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageRegistrationDate>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#incomingMessageRegistrationDate> .
+
+<http://data.sre.lu/ontology/sreonto#Selector>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#Selector-selectorType> , <http://data.sre.lu/ontology/sreonto#Selector-selectorTitle> , <http://data.sre.lu/ontology/sreonto#Selector-selectorUsedBySubject> .
+
+<http://data.sre.lu/ontology/sreonto#Activity-activityUnderResponsibilityOf>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Membership> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#activityUnderResponsibilityOf> .
+
+<http://data.sre.lu/ontology/sreonto#Task-taskAuthorisedBy>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Authorisation> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#taskAuthorisedBy> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseIntegrationActivity>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#DatabaseIntegrationActivity-databaseIntegrationOf> , <http://data.sre.lu/ontology/sreonto#DatabaseIntegrationActivity-databaseIntegrationSourceDocument> , <http://data.sre.lu/ontology/sreonto#DatabaseIntegrationActivity-databaseIntegrationUsingDatabase> , <http://data.sre.lu/ontology/sreonto#DatabaseIntegrationActivity-databaseIntegrationInformationType> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageSender>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#ExternalOrganisationalUnit> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#incomingMessageSender> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessageComCenter-incomingMessageComCenterLuxClassificationLevel>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#LuxClassificationLevel> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#incomingMessageComCenterLuxClassificationLevel> .
+
+<http://data.sre.lu/ontology/sreonto#Dossier-dossierHasReport>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Report> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#dossierHasReport> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseVerificationActivity-databaseVerificationOf>
+        a        sh:PropertyShape ;
+        sh:path  <http://data.sre.lu/ontology/sreonto#databaseVerificationOf> .
+
+<http://data.sre.lu/ontology/sreonto#Subject>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#Subject-subjectHasSelector> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageLuxClassificationLevel>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#LuxClassificationLevel> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageLuxClassificationLevel> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageChannel>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#ChannelType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageChannel> .
+
+<http://data.sre.lu/ontology/sreonto#Dossier-dossierUnderResponsibilityOfOrganisationalUnit>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#InternalOrganisationalUnit> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#dossierUnderResponsibilityOfOrganisationalUnit> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageModifiedDate>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#messageModifiedDate> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageContentType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#MessageContentType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageContentType> .
+
+<http://data.sre.lu/ontology/sreonto#Dossier-dossierHasMessage>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Message> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#dossierHasMessage> .
+
+<http://data.sre.lu/ontology/sreonto#OutgoingMessageComCenter-outgoingMessageComCenterRelatedDocSharePointURL>
+        a         sh:PropertyShape ;
+        sh:class  xsd:anyURI ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#outgoingMessageComCenterRelatedDocSharePointURL> .
+
+<http://data.sre.lu/ontology/sreonto#Status>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#Status-statusDate> .
+
+<http://data.sre.lu/ontology/sreonto#Task-taskPriority>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#TaskPriority> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#taskPriority> .
+
+<http://data.sre.lu/ontology/sreonto#Document>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#Document-documentType> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseVerificationResult-idIdentifiedObjectInDatabase>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#idIdentifiedObjectInDatabase> .
+
+<http://data.sre.lu/ontology/sreonto#ActivityStatus-activityStatus>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#ActivityStatusType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#activityStatus> .
+
+<http://data.sre.lu/ontology/sreonto#TaskStatus>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#TaskStatus-taskStatusType> .
+
+<http://data.sre.lu/ontology/sreonto#Dossier-dossierId>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#dossierId> .
+
+<http://data.sre.lu/ontology/sreonto#Task-taskType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#TaskType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#taskType> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageTriggersActivity>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Activity> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#incomingMessageTriggersActivity> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageHasAnswer>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Message> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageHasAnswer> .
+
+<http://data.sre.lu/ontology/sreonto#Operation-operationUUID>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#operationUUID> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageLegalNoticeType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#LegalNoticeType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageLegalNoticeType> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageComCenterSharePointURL>
+        a         sh:PropertyShape ;
+        sh:class  xsd:anyURI ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#incomingMessageComCenterSharePointURL> .
+
+<http://data.sre.lu/ontology/sreonto#AuthorisationRequest-authorisationType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#AuthorisationType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#authorisationType> .
+
+<http://data.sre.lu/ontology/sreonto#Task-taskHasStatus>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#TaskStatus> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#taskHasStatus> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageMailingDate>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#messageMailingDate> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageHasRelatedDocument>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Document> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageHasRelatedDocument> .
+
+<http://data.sre.lu/ontology/sreonto#OutgoingMessageStatus>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#OutgoingMessageStatus-outgoingMessageStatusType> .
+
+<http://data.sre.lu/ontology/sreonto#Activity-activityHasComment>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Comment> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#activityHasComment> .
+
+<http://data.sre.lu/ontology/sreonto#Task>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#Task-taskHasStatus> , <http://data.sre.lu/ontology/sreonto#Task-taskPriority> , <http://data.sre.lu/ontology/sreonto#Task-taskAssignedToAgent> , <http://data.sre.lu/ontology/sreonto#Task-taskBelongsToDossier> , <http://data.sre.lu/ontology/sreonto#Task-taskHasActivity> , <http://data.sre.lu/ontology/sreonto#Task-taskHasAuthorisationDemand> , <http://data.sre.lu/ontology/sreonto#Task-taskCompletnessDate> , <http://data.sre.lu/ontology/sreonto#Task-taskType> , <http://data.sre.lu/ontology/sreonto#Task-taskTriggeredByActivity> , <http://data.sre.lu/ontology/sreonto#Task-taskAuthorisedBy> , <http://data.sre.lu/ontology/sreonto#Task-taskAssignmentDate> , <http://data.sre.lu/ontology/sreonto#Task-taskUnderResponsibilityOf> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessage>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageRegistrationDate> , <http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageComCenterRelatedDocSharePointURL> , <http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageTriggersActivity> , <http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageRecipient> , <http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageAnsweringLimitDateGivenBySRE> , <http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageSender> , <http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageNeedToNotifyLiaisonOfficer> , <http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageSourceLabel> , <http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageComCenterSharePointURL> , <http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageReceptionDate> , <http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageProcessingStatus> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseVerificationActivity>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#DatabaseVerificationActivity-databaseVerificationSourceDocument> , <http://data.sre.lu/ontology/sreonto#DatabaseVerificationActivity-databaseVerificationOf> , <http://data.sre.lu/ontology/sreonto#DatabaseVerificationActivity-databaseVerificationInformationType> , <http://data.sre.lu/ontology/sreonto#DatabaseVerificationActivity-databaseVerificationUsingDatabase> .
+
+<http://data.sre.lu/ontology/sreonto#Task-taskAssignedToAgent>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Agent> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#taskAssignedToAgent> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseVerificationActivity-databaseVerificationSourceDocument>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#SourceDocument> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#databaseVerificationSourceDocument> .
+
+<http://data.sre.lu/ontology/sreonto#OutgoingMessageComCenter-outgoingMessageComCenterRecipient>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#CommunicationCenterService> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#outgoingMessageComCenterRecipient> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messagePriorityTypeRequestedBySender>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#MessagePriorityType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messagePriorityTypeRequestedBySender> .
+
+<http://data.sre.lu/ontology/sreonto#Activity-activityTriggeredByIncomingMessage>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#IncomingMessage> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#activityTriggeredByIncomingMessage> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageAnswersToMessage>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Message> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageAnswersToMessage> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#MessageType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageType> .
+
+<http://data.sre.lu/ontology/sreonto#Task-taskUnderResponsibilityOf>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#InternalOrganisationalUnit> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#taskUnderResponsibilityOf> .
+
+<http://data.sre.lu/ontology/sreonto#Task-taskHasActivity>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Activity> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#taskHasActivity> .
+
+<http://data.sre.lu/ontology/sreonto#Activity-activityHasOutgoingMessage>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#OutgoingMessage> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#activityHasOutgoingMessage> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messageInternalReferenceBackOffice>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messageInternalReferenceBackOffice> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseVerificationActivity-databaseVerificationUsingDatabase>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Database> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#databaseVerificationUsingDatabase> .
+
+<http://data.sre.lu/ontology/sreonto#Document-documentType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#DocumentType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#documentType> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseIntegrationActivity-databaseIntegrationSourceDocument>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#SourceDocument> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#databaseIntegrationSourceDocument> .
+
+<http://data.sre.lu/ontology/sreonto#Event-eventHasStatus>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Status> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#eventHasStatus> .
+
+<http://data.sre.lu/ontology/sreonto#Comment-commentText>
+        a         sh:PropertyShape ;
+        sh:class  rdfs:Literal ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#commentText> .
+
+<http://data.sre.lu/ontology/sreonto#Activity-activityTriggersOutgoingMessage>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#OutgoingMessage> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#activityTriggersOutgoingMessage> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseVerificationResult>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#DatabaseVerificationResult-verifiedDatabase> , <http://data.sre.lu/ontology/sreonto#DatabaseVerificationResult-idIdentifiedObjectInDatabase> , <http://data.sre.lu/ontology/sreonto#DatabaseVerificationResult-databaseVerificationResultType> .
+
+<http://data.sre.lu/ontology/sreonto#OutgoingMessage>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#OutgoingMessage-outgoingMessageRecipient> , <http://data.sre.lu/ontology/sreonto#OutgoingMessage-outgoingMessageDispatchDate> , <http://data.sre.lu/ontology/sreonto#OutgoingMessage-outgoingMessageHasStatus> .
+
+<http://data.sre.lu/ontology/sreonto#InformationRequestResult>
+        a            sh:NodeShape ;
+        sh:property  <http://data.sre.lu/ontology/sreonto#InformationRequestResult-informationRequestResultType> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseIntegrationActivity-databaseIntegrationInformationType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#InformationType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#databaseIntegrationInformationType> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageNeedToNotifyLiaisonOfficer>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:boolean ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#incomingMessageNeedToNotifyLiaisonOfficer> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseIntegrationActivity-databaseIntegrationUsingDatabase>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Database> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#databaseIntegrationUsingDatabase> .
+
+<http://data.sre.lu/ontology/sreonto#Message-messagePriorityLevel>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#MessagePriorityLevel> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#messagePriorityLevel> .
+
+<http://data.sre.lu/ontology/sreonto#IncomingMessage-incomingMessageReceptionDate>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTime ;
+        sh:path      <http://data.sre.lu/ontology/sreonto#incomingMessageReceptionDate> .
+
+<http://data.sre.lu/ontology/sreonto#DatabaseVerificationActivity-databaseVerificationInformationType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#InformationType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#databaseVerificationInformationType> .
+
+<http://data.sre.lu/ontology/sreonto#InformationRequestResult-informationRequestResultType>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#InformationRequestResultType> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#informationRequestResultType> .
+
+<http://data.sre.lu/ontology/sreonto#Dossier-dossierHasGraphicalRepresentation>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Image> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#dossierHasGraphicalRepresentation> .
+
+<http://data.sre.lu/ontology/sreonto#Subject-subjectHasSelector>
+        a         sh:PropertyShape ;
+        sh:class  <http://data.sre.lu/ontology/sreonto#Selector> ;
+        sh:path   <http://data.sre.lu/ontology/sreonto#subjectHasSelector> .

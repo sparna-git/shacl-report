@@ -1,2 +1,2 @@
-# shacl-report
+# SHACL app
 

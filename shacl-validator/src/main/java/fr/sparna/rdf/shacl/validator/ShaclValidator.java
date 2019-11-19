@@ -32,6 +32,7 @@ import org.topbraid.shacl.engine.filters.ExcludeMetaShapesFilter;
 import org.topbraid.shacl.validation.ValidationEngine;
 import org.topbraid.shacl.validation.ValidationEngineFactory;
 import org.topbraid.shacl.validation.ValidationUtil;
+import org.topbraid.shacl.validation.sparql.AbstractSPARQLExecutor;
 import org.topbraid.shacl.vocabulary.SH;
 import org.topbraid.shacl.vocabulary.TOSH;
 
@@ -63,6 +64,11 @@ public class ShaclValidator {
 	 * A ProgressMonitor (that will store all progress logs in a StringBuffer, or log them in a log stream)
 	 */
 	protected ProgressMonitor progressMonitor;
+	
+	/**
+	 * Create more details for OrComponent and AndComponent ?
+	 */
+	protected boolean createDetails = false;
 	
 	public ShaclValidator(Model shapesModel) {
 		this(shapesModel, null);
@@ -130,6 +136,9 @@ public class ShaclValidator {
 				shapesGraph,
 				// an optional Report resource
 				null);
+		
+		// set this to improve details of AndConstraintComponent or OrConstraintComponent
+		AbstractSPARQLExecutor.createDetails = this.createDetails;
 		
 		// set custom label function to properly display lists
 		engine.setLabelFunction(v -> {
@@ -202,6 +211,14 @@ public class ShaclValidator {
 		return shapesModel;
 	}
 	
+	public boolean isCreateDetails() {
+		return createDetails;
+	}
+
+	public void setCreateDetails(boolean createDetails) {
+		this.createDetails = createDetails;
+	}
+
 	public static void main(String...strings) throws Exception {
 		Model dataModel = ModelFactory.createDefaultModel();
 		// RDFDataMgr.read(dataModel, new FileInputStream(new File("/home/thomas/sparna/00-Clients/Sparna/20-Repositories/sparna/eu.europa.publications/eli/validator/shacl-validator/src/test/resources/sample-legifrance.ttl")), Lang.TURTLE);

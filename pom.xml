@@ -3,15 +3,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fr.sparna.rdf.shacl</groupId>
-    <artifactId>shacl-cli-root-pom</artifactId>
+    <artifactId>shacl-app-root-pom</artifactId>
     <version>0.0.1</version>
     <packaging>pom</packaging>
 
-    <name>SHACL-cli root pom</name>
+    <name>SHACL-app root pom</name>
 
     <modules>
         <module>shacl-validator</module>
-        <module>shacl-cli</module>
+        <module>shacl-app</module>
     </modules>
 
     <properties>
@@ -28,6 +28,13 @@
                 <groupId>com.beust</groupId>
                 <artifactId>jcommander</artifactId>
                 <version>1.72</version>
+            </dependency>
+
+            <!-- Jena -->
+            <dependency>
+                <groupId>org.apache.jena</groupId>
+                <artifactId>jena-arq</artifactId>
+                <version>3.11.0</version>
             </dependency>
 
             <!-- logging -->
