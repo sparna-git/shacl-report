@@ -86,7 +86,7 @@ a:visited {
 					{% for result in  data %}
 						<tr >
 							<td><a class="link" href="{{result.focusNode}}" target="_blank">{{result.focusNode}}</a></td>
-							<td>{{result.resultMessage}}</td>
+							<td>{{result.resultMessage|escape('html')}}</td>
 							<td>{{result.resultPath}}</td>
 							<td>{{result.resultSeverity}}</td>
 							<td>{{result.sourceConstraintComponent}}</td>

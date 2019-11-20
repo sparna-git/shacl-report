@@ -90,7 +90,7 @@ a:visited {
 							<td>{{result.sourceConstraintComponent}}</td>
 							<td>{{result.resultSeverity}}</td>
 							<td>{{result.resultPath}}</td>
-							<td>{{result.resultMessage}}</td>
+							<td>{{result.resultMessage|escape('html')}}</td>
 							<td>{{result.count}}</td>
 							<td>{{result.sampleFocusNode}}</td>
 							<td>{{result.sampleValue}}</td>

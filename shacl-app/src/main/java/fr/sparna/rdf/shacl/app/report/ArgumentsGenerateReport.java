@@ -6,7 +6,7 @@ public class ArgumentsGenerateReport {
 
 	@Parameter(
 			names = { "-i", "--input" },
-			description = "Chemin du fichier RDF à valider",
+			description = "Chemin du fichier RDF du rapport de validation",
 			required = true,
 			variableArity = true
 	)

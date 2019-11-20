@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.jena.rdf.model.Model;
@@ -19,24 +20,31 @@ public class InputModelReader {
 	private static Logger log = LoggerFactory.getLogger(InputModelReader.class.getName());
 	
 	public static Model readInputModel(List<File> inputs) throws MalformedURLException {
-		Model inputModel = null;
+		Model inputModel = ModelFactory.createDefaultModel();
 		
 		for (File inputFile : inputs) {
-			log.debug("Input parameter found as a local file : "+inputFile.getAbsolutePath());
-			if(RDFLanguages.filenameToLang(inputFile.getName()) != null) {
-				log.debug("Determined RDF syntax : "+RDFLanguages.filenameToLang(inputFile.getName()).getName());
-				try {
-					inputModel = ModelFactory.createDefaultModel();
-					RDFDataMgr.read(inputModel, new FileInputStream(inputFile), RDF.getURI(), RDFLanguages.filenameToLang(inputFile.getName()));
-				} catch (FileNotFoundException ignore) {
-					ignore.printStackTrace();
+			
+			if(inputFile.isDirectory()) {
+				for(File f : inputFile.listFiles()) {
+					inputModel.add(readInputModel(Collections.singletonList(f)));
 				}
 			} else {
-				log.error("Unknown RDF format for file "+inputFile.getAbsolutePath());
+				if(RDFLanguages.filenameToLang(inputFile.getName()) != null) {
+					log.debug("Determined RDF syntax : "+RDFLanguages.filenameToLang(inputFile.getName()).getName());
+					try {
+						RDFDataMgr.read(inputModel, new FileInputStream(inputFile), RDF.getURI(), RDFLanguages.filenameToLang(inputFile.getName()));
+					} catch (FileNotFoundException ignore) {
+						ignore.printStackTrace();
+					}
+				} else {
+					log.error("Unknown RDF format for file "+inputFile.getAbsolutePath());
+				}				
 			}
 		} 	
 		
 		return inputModel;
 	}
+	
+	
 	
 }

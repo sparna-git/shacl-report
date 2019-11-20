@@ -34,8 +34,8 @@ public class JenaReportParser {
 				ValidationResult result = new ValidationResult();
 				
 				result.setFocusNode(model.shortForm(qs.getResource("nodeUri").toString()));
-				result.setResultSeverity(model.shortForm(qs.getResource("resultSeverity").toString()));
-				result.setSourceConstraintComponent(model.shortForm(qs.getResource("sourceConstraintComponent").toString()));
+				result.setResultSeverity(qs.get("resultSeverityPretty").toString());
+				result.setSourceConstraintComponent(qs.get("sourceConstraintComponentPretty").toString());
 				result.setSourceShape(model.shortForm(qs.get("sourceShape").toString()));
 				
 				if(qs.contains("message")) {

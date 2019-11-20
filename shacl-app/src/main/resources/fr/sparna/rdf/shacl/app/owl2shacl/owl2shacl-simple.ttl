@@ -83,6 +83,7 @@ simple-owl2sh:ClassShape
   sh:rule simple-owl2sh:owlUnionOfIRIs2rdfsSubClassOf ;
   # range stuff
   sh:rule simple-owl2sh:rdfsRange2shClassOrDatatype ;
+  sh:rule simple-owl2sh:rdfsRangeLiteral2shNodeKind ;
   sh:rule simple-owl2sh:shPropertyShapeCleanUp ;
   sh:target [
       rdf:type sh:SPARQLTarget ;
@@ -147,6 +148,7 @@ simple-owl2sh:CreatePropertyShapesFromRestrictions
   sh:construct """
       CONSTRUCT {
         $this a sh:NodeShape .
+        $this a rdfs:Class .
         $this sh:property ?propertyShape .
         ?propertyShape sh:path ?property .
       }
@@ -167,7 +169,8 @@ simple-owl2sh:CreatePropertyShapesFromMatchingDomains
   sh:construct """
 			CONSTRUCT {
 				$this a sh:NodeShape .
-    			$this sh:property ?propertyShape .
+    		$this a rdfs:Class .
+        $this sh:property ?propertyShape .
 				?propertyShape sh:path ?property .
 			}
 			WHERE {
@@ -228,9 +231,35 @@ simple-owl2sh:rdfsRange2shClassOrDatatype
 				?propertyShape sh:path ?property .
 				?property rdfs:range ?range .
 				FILTER isIRI(?range) .
-				BIND (IF((?range IN (xsd:boolean, xsd:string, xsd:date, xsd:dateTime, xsd:integer, xsd:float, xsd:duration)), sh:datatype, sh:class) AS ?parameter) .
+        # exclude the case where range is rdfs:Literal, this will be handled with an sh:kind
+        FILTER(?range != rdfs:Literal) .
+				BIND (
+          IF(
+            (?range IN (xsd:boolean, xsd:string, xsd:date, xsd:dateTime, xsd:integer, xsd:float, xsd:duration)),
+            sh:datatype,
+            sh:class
+          ) AS ?parameter) .
 			}
 			""" ;
+  sh:order 5 ;
+  sh:prefixes <http://sparna.fr/ontologies/simple-owl2sh> ;
+.
+
+
+simple-owl2sh:rdfsRangeLiteral2shNodeKind
+  rdf:type sh:SPARQLRule ;
+  rdfs:comment "For each relevant property that has an rdfs:range with value rdfs:Literal, create sh:nodeKind constraint." ;
+  rdfs:label "rdfs:range rdfs:Literal to sh:nodeKind sh:Literal" ;
+  sh:construct """
+      CONSTRUCT {
+        ?propertyShape sh:nodeKind sh:Literal .
+      }
+      WHERE {
+        ?propertyShape sh:path ?property .
+        ?property a owl:DatatypeProperty .
+        ?property rdfs:range rdfs:Literal .
+      }
+      """ ;
   sh:order 5 ;
   sh:prefixes <http://sparna.fr/ontologies/simple-owl2sh> ;
 .

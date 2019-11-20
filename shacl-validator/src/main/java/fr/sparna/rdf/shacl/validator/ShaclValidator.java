@@ -30,6 +30,7 @@ import org.topbraid.shacl.arq.SHACLFunctions;
 import org.topbraid.shacl.engine.ShapesGraph;
 import org.topbraid.shacl.engine.filters.ExcludeMetaShapesFilter;
 import org.topbraid.shacl.validation.ValidationEngine;
+import org.topbraid.shacl.validation.ValidationEngineConfiguration;
 import org.topbraid.shacl.validation.ValidationEngineFactory;
 import org.topbraid.shacl.validation.ValidationUtil;
 import org.topbraid.shacl.validation.sparql.AbstractSPARQLExecutor;
@@ -138,7 +139,9 @@ public class ShaclValidator {
 				null);
 		
 		// set this to improve details of AndConstraintComponent or OrConstraintComponent
-		AbstractSPARQLExecutor.createDetails = this.createDetails;
+		ValidationEngineConfiguration config = new ValidationEngineConfiguration();
+		config.setReportDetails(this.createDetails);
+		engine.setConfiguration(config);
 		
 		// set custom label function to properly display lists
 		engine.setLabelFunction(v -> {
