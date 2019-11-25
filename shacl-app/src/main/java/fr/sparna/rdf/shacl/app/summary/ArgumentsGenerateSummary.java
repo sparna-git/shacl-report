@@ -1,38 +1,40 @@
 package fr.sparna.rdf.shacl.app.summary;
 
+import java.io.File;
+import java.util.List;
+
 import com.beust.jcommander.Parameter;
 
 public class ArgumentsGenerateSummary {
 
 	@Parameter(
 			names = { "-i", "--input" },
-			description = "Chemin du fichier RDF à valider",
+			description = "Path to local RDF file containing validation report",
 			required = true,
 			variableArity = true
 	)
-	private String input;
-	
+	private List<File> input;
+
 	@Parameter(
 			names = { "-o", "--output" },
-			description = "Chemin vers le fichier où sera enregistré la sortie",
+			description = "Path to the output file",
 			required = true
 	)
-	private String output;
-	
+	private File output;
 
-	public String getInput() {
+	public List<File> getInput() {
 		return input;
 	}
 
-	public void setInput(String input) {
+	public void setInput(List<File> input) {
 		this.input = input;
 	}
 
-	public String getOutput() {
+	public File getOutput() {
 		return output;
 	}
 
-	public void setOutput(String output) {
+	public void setOutput(File output) {
 		this.output = output;
 	}
 

@@ -6,24 +6,10 @@ import java.util.List;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 
+import fr.sparna.rdf.shacl.owl2shacl.Owl2Shacl.Owl2ShaclStyle;
+
 @Parameters(commandDescription = "Infer data based on the provided SHACL file containing rules, and writes the output in the given output file")
 public class ArgumentsOwl2Shacl {
-
-	public static enum Owl2ShaclStyle {
-		
-		SIMPLE("owl2shacl-simple.ttl");
-		
-		private String resourcePath;
-
-		private Owl2ShaclStyle(String resourcePath) {
-			this.resourcePath = resourcePath;
-		}
-
-		public String getResourcePath() {
-			return resourcePath;
-		}
-		
-	}
 	
 	@Parameter(
 			names = { "-i", "--input" },

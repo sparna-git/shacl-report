@@ -1,4 +1,4 @@
-package fr.sparna.rdf.shacl.result;
+package fr.sparna.rdf.shacl.printer.report;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class ValidationReportWriterRegistry {
 		return instance;
 	}
 	
-	public Optional<ValidationReportWriter> getWriter(ValidationReportFormat format) {
+	public Optional<ValidationReportWriter> getWriter(ValidationReportOutputFormat format) {
 		for (ValidationReportWriter writer : getWriters()) {
 			if(writer.getFormat().equals(format)) {
 				return Optional.of(writer);

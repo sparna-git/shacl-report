@@ -23,6 +23,7 @@ public class InputModelReader {
 		Model inputModel = ModelFactory.createDefaultModel();
 		
 		for (File inputFile : inputs) {
+			log.debug("Reading input from file : "+inputFile.getAbsolutePath());
 			
 			if(inputFile.isDirectory()) {
 				for(File f : inputFile.listFiles()) {
@@ -30,7 +31,6 @@ public class InputModelReader {
 				}
 			} else {
 				if(RDFLanguages.filenameToLang(inputFile.getName()) != null) {
-					log.debug("Determined RDF syntax : "+RDFLanguages.filenameToLang(inputFile.getName()).getName());
 					try {
 						RDFDataMgr.read(inputModel, new FileInputStream(inputFile), RDF.getURI(), RDFLanguages.filenameToLang(inputFile.getName()));
 					} catch (FileNotFoundException ignore) {

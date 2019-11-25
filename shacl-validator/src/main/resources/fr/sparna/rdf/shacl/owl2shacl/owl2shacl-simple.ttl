@@ -85,6 +85,10 @@ simple-owl2sh:ClassShape
   sh:rule simple-owl2sh:rdfsRange2shClassOrDatatype ;
   sh:rule simple-owl2sh:rdfsRangeLiteral2shNodeKind ;
   sh:rule simple-owl2sh:shPropertyShapeCleanUp ;
+
+  # extra NodeShapes to check domains of properties
+  sh:rule simple-owl2sh:rdfsDomain2shNodeShapeWithTargetSubjectOf;
+  
   sh:target [
       rdf:type sh:SPARQLTarget ;
       sh:prefixes <http://sparna.fr/ontologies/simple-owl2sh> ;
@@ -405,7 +409,7 @@ simple-owl2sh:owlMinCardinality2shMinCount
         BIND (simple-owl2sh:getPropertyShape(?property, $this) AS ?propertyShape) .
       }
       """ ;
-  sh:order 4 ;
+  sh:order 6 ;
   sh:prefixes <http://sparna.fr/ontologies/simple-owl2sh> ;
 .
 simple-owl2sh:owlMinQualifiedCardinalityOnClass2shMinCount
@@ -722,7 +726,7 @@ simple-owl2sh:owlUnionOfIRIs2rdfsSubClassOf
         ?unionOf rdf:rest*/rdf:first ?class .
       }
 """ ;
-  sh:order "4"^^xsd:decimal ;
+  sh:order 4 ;
   sh:prefixes <http://sparna.fr/ontologies/simple-owl2sh> ;
 .
 
@@ -786,6 +790,29 @@ simple-owl2sh:owlAllValuesFrom2shClassOrDatatype
 .
 
 
+simple-owl2sh:rdfsDomain2shNodeShapeWithTargetSubjectOf
+  rdf:type sh:SPARQLRule ;
+  rdfs:comment "For each rdfs:domain that is an IRI, create a NodeShape with a sh:targetSubjectsOf to this domain and a sh:class constraint." ;
+  rdfs:label "rdfs:domain with IRI to sh:NodeShape with sh:class" ;
+  sh:construct """
+      CONSTRUCT {
+        ?propertyShape a sh:NodeShape .
+        ?propertyShape sh:targetSubjectsOf ?property .
+        ?propertyShape sh:class ?domain .
+      }
+      WHERE {
+        ?property rdfs:domain ?domain .
+        FILTER isIRI(?domain) .
+
+        BIND(IRI(CONCAT(STR(?property), '-', 'shape')) AS ?propertyShape)
+      }
+      """ ;
+  sh:order 5 ;
+  sh:prefixes <http://sparna.fr/ontologies/simple-owl2sh> ;
+.
+
+
+
 simple-owl2sh:shPropertyShapeCleanUp
   rdf:type sh:SPARQLRule ;
   rdfs:comment "For each value of sh:property, add a rdf:type sh:PropertyShape triple." ;
@@ -796,7 +823,7 @@ simple-owl2sh:shPropertyShapeCleanUp
 WHERE {
     ?shape sh:property ?propertyShape .
 }""" ;
-  sh:order "100"^^xsd:decimal ;
+  sh:order 100 ;
   sh:prefixes <http://sparna.fr/ontologies/simple-owl2sh> ;
 .
 
