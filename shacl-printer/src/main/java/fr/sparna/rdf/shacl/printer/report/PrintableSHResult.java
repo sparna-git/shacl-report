@@ -38,5 +38,9 @@ public class PrintableSHResult {
 	public String getValue() {
 		return RDFRenderer.renderRDFNode(shresult.getValue());
 	}
+
+	public SHResult getShresult() {
+		return shresult;
+	}
 	
 }

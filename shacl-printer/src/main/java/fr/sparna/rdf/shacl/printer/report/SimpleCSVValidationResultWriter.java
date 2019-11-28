@@ -3,6 +3,7 @@ package fr.sparna.rdf.shacl.printer.report;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.Locale;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
@@ -12,7 +13,7 @@ public class SimpleCSVValidationResultWriter implements ValidationReportWriter {
 	
 	
 	@Override
-	public void write(ValidationReport report, OutputStream out) {
+	public void write(ValidationReport report, OutputStream out, Locale locale) {
 		StringBuffer buffer = new StringBuffer();
 		
 		// CSV header

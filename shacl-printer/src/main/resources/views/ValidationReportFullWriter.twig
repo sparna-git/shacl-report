@@ -1,0 +1,65 @@
+
+<div class="row  justify-content-center">
+<div class="col-8">
+
+<ul style="list-style-type: none;">
+	{% for summaryEntry in report.resultsSummary %}
+		<li>
+			{% if (summaryEntry.resultSeverityLabel == "Violation") %}
+				<i class="fad fa-times-hexagon fa-swap-opacity"></i>
+			{% elseif (summaryEntry.resultSeverityLabel == "Warning") %}
+				<i class="fad fa-exclamation-triangle"></i>
+			{% elseif (summaryEntry.resultSeverityLabel == "Info") %}
+				<i class="fad fa-comment-alt-exclamation"></i>
+			{% else %}
+				<i class="fad fa-times-hexagon fa-swap-opacity"></i>		
+			{% endif %}
+			&nbsp;<a href="#{{summaryEntry.hashCode()}}">"{{summaryEntry.message}}" ({{summaryEntry.count}} {{summaryEntry.resultSeverityLabel | translate}}{% if (summaryEntry.count > 1) %}s{% endif %})</a>
+		</li>
+	{% endfor %}
+</ul>
+
+
+{% for summaryEntry in report.resultsSummary %}
+	<div id="{{summaryEntry.hashCode()}}">
+		<h3>
+			{% if (summaryEntry.resultSeverityLabel == "Violation") %}
+				<i class="fad fa-times-hexagon fa-swap-opacity"></i>
+			{% elseif (summaryEntry.resultSeverityLabel == "Warning") %}
+				<i class="fad fa-exclamation-triangle"></i>
+			{% elseif (summaryEntry.resultSeverityLabel == "Info") %}
+				<i class="fad fa-comment-alt-exclamation"></i>
+			{% else %}
+				<i class="fad fa-times-hexagon fa-swap-opacity"></i>		
+			{% endif %}
+			&nbsp;<em>"{{summaryEntry.message}}"</em> <small>({{summaryEntry.count}} {{summaryEntry.resultSeverityLabel | translate}}{% if (summaryEntry.count > 1) %}s{% endif %})</small>
+		</h3>
+		<div>
+				<ul>
+					<li>Shape : {{summaryEntry.sourceShape}}</li>
+					<li>Constraint : {{summaryEntry.sourceConstraintComponent}}</li>
+				</ul>
+		</div>
+		<table class="table">
+            <thead>
+              <tr>
+                <th>Focus node</th>
+                <th>Property or path</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for result in report.getResultsFor(summaryEntry) %}
+                  <tr>
+                    <td><span title="{{result.shresult.focusNode}}">{{result.focusNode}}</span></td>
+                    <td><span title="{{result.shresult.path}}">{{result.resultPath}}</span></td>
+                    <td>{{result.value}}</td>
+                  </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+	</div>
+{% endfor %}
+
+</div>
+</div>

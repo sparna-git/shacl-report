@@ -1,9 +1,18 @@
 package fr.sparna.rdf.shacl.printer.report;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.XSD;
@@ -42,6 +51,56 @@ public class ValidationReport {
 		
 		return results;
 	}
+	
+	public synchronized List<SHResultSummaryEntry> getResultsSummary() {
+		List<SHResultSummaryEntry> entries = new ArrayList<>();
+		QueryExecution execution = null;
+		try {
+			execution = QueryExecutionFactory.create(IOUtils.toString(this.getClass().getResource(this.getClass().getSimpleName()+".rq"), "UTF-8"), this.getResultsModel());
+			ResultSet resultSet = execution.execSelect();
+			resultSet.forEachRemaining(solution -> {
+				entries.add(SHResultSummaryEntry.fromQuerySolution(solution));
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			execution.close();
+		}
+		
+		return entries;
+	}
+	
+	public synchronized List<SHResult> getResultsFor(SHResultSummaryEntry entry) {
+		// GROUP BY ?sourceShape ?sourceConstraintComponent ?resultSeverity ?resultPath ?message
+		List<SHResult> results = getResults().stream().filter(r -> {
+			return (
+					r.getSourceShape().equals(entry.getSourceShape())
+					&&
+					r.getSourceConstraintComponent().equals(entry.getSourceConstraintComponent())
+					&&
+					r.getResultSeverity().equals(entry.getResultSeverity())
+					&&
+					r.getPath().equals(entry.getResultPath())
+					&&
+					r.getMessage().equals(entry.getMessage())
+			);
+		}).collect(Collectors.toList());
+		
+		Collections.sort(results, new Comparator<SHResult>() {
+
+			@Override
+			public int compare(SHResult r1, SHResult r2) {
+				if(!r1.getFocusNode().toString().equals(r2.getFocusNode().toString())) {
+					return r1.getFocusNode().toString().compareTo(r2.getFocusNode().toString());
+				} else {
+					return 0;
+				}
+			}
+			
+		});
+		
+		return results;
+	}	
 	
 	public long getNumberOfViolations() {
 		return getResults().stream().filter(vr -> vr.getResultSeverity().equals(SH.Violation)).count();

@@ -8,7 +8,8 @@ public enum ValidationReportOutputFormat {
 	RDF(Arrays.asList(new String[] { "ttl", "rdf", "jsonld" })),
 	CSV(Arrays.asList(new String[] { "csv" })),
 	HTML(Arrays.asList(new String[] { "html" })),
-	HTML_SUMMARY(Arrays.asList(new String[] { "summary.html" }));
+	HTML_SUMMARY(Arrays.asList(new String[] { "summary.html" })),
+	HTML_FULL(Arrays.asList(new String[] { "full.html" }));
 	
 	protected List<String> fileExtensions;
 	
@@ -21,10 +22,11 @@ public enum ValidationReportOutputFormat {
 	}
 	
 	public static ValidationReportOutputFormat forFileName(String filename) {
-		String extension = filename.substring(filename.lastIndexOf('.')+1);
 		for (ValidationReportOutputFormat f : ValidationReportOutputFormat.values()) {
-			if(f.getFileExtensions().contains(extension)) {
-				return f;
+			for (String extension : f.getFileExtensions()) {
+				if(filename.endsWith(extension)) {
+					return f;
+				}
 			}
 		}
 		

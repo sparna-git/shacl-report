@@ -3,15 +3,11 @@ package fr.sparna.rdf.shacl.printer.report;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.jena.query.QueryExecution;
-import org.apache.jena.query.QueryExecutionFactory;
-import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.riot.RDFLanguages;
@@ -22,20 +18,10 @@ import org.jtwig.JtwigTemplate;
 public class ValidationReportDatatableSummaryWriter implements ValidationReportWriter {
 
 	@Override
-	public void write(ValidationReport results, OutputStream out) {		
-		List<PrintableSHResultSummaryEntry> entries = new ArrayList<>();
-		QueryExecution execution = null;
-		try {
-			execution = QueryExecutionFactory.create(IOUtils.toString(this.getClass().getResource(this.getClass().getSimpleName()+".rq"), "UTF-8"), results.getResultsModel());
-			ResultSet resultSet = execution.execSelect();
-			resultSet.forEachRemaining(solution -> {
-				entries.add(new PrintableSHResultSummaryEntry(SHResultSummaryEntry.fromQuerySolution(solution)));
-			});
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			execution.close();
-		}
+	public void write(ValidationReport results, OutputStream out, Locale locale) {		
+		List<PrintableSHResultSummaryEntry> entries = results.getResultsSummary().stream()
+				.map(e -> new PrintableSHResultSummaryEntry(e))
+				.collect(Collectors.toList());
 		
 		JtwigModel model = JtwigModel.newModel();
 		model.with("data", entries);
@@ -56,7 +42,7 @@ public class ValidationReportDatatableSummaryWriter implements ValidationReportW
 		ValidationReportDatatableSummaryWriter me = new ValidationReportDatatableSummaryWriter();
 		Model m = ModelFactory.createDefaultModel();
 		m.read(new FileInputStream(resultFile), RDF.uri, RDFLanguages.filenameToLang(resultFile.getName()).getName());
-		me.write(new ValidationReport(m), new FileOutputStream(output));
+		me.write(new ValidationReport(m), new FileOutputStream(output), Locale.forLanguageTag("fr"));
 	}
 
 }

@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import org.apache.jena.rdf.model.Model;
@@ -16,8 +17,10 @@ import org.jtwig.JtwigTemplate;
 
 public class ValidationReportDatatableFullWriter implements ValidationReportWriter {
 
+	
+	
 	@Override
-	public void write(ValidationReport results, OutputStream out) {		
+	public void write(ValidationReport results, OutputStream out, Locale locale) {		
 		List<PrintableSHResult> displayResults = results.getResults().stream().map(r -> new PrintableSHResult(r)).collect(Collectors.toList());
 		
 		JtwigModel model = JtwigModel.newModel();
@@ -39,7 +42,7 @@ public class ValidationReportDatatableFullWriter implements ValidationReportWrit
 		ValidationReportDatatableFullWriter me = new ValidationReportDatatableFullWriter();
 		Model m = ModelFactory.createDefaultModel();
 		m.read(new FileInputStream(resultFile), RDF.uri, RDFLanguages.filenameToLang(resultFile.getName()).getName());
-		me.write(new ValidationReport(m), new FileOutputStream(output));
+		me.write(new ValidationReport(m), new FileOutputStream(output), Locale.forLanguageTag("fr"));
 	}
 
 }
