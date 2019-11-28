@@ -2,6 +2,7 @@ package fr.sparna.rdf.shacl.app.summary;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Locale;
 
 import org.apache.jena.rdf.model.Model;
 
@@ -31,7 +32,7 @@ public class GenerateSummary implements CliCommandIfc {
 		
 		// print
 		ValidationReportDatatableSummaryWriter printer = new ValidationReportDatatableSummaryWriter();
-		printer.write(report, new FileOutputStream(args.getOutput()));
+		printer.write(report, new FileOutputStream(args.getOutput()), Locale.getDefault());
 	}
 
 }

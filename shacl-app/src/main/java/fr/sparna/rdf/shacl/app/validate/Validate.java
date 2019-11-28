@@ -3,6 +3,7 @@ package fr.sparna.rdf.shacl.app.validate;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Locale;
 
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
@@ -76,7 +77,7 @@ public class Validate implements CliCommandIfc {
 		for(File outputFile : a.getOutput()) {
 			ValidationReportWriterRegistry.getInstance().getWriter(ValidationReportOutputFormat.forFileName(outputFile.getName()))
 			.orElse(new ValidationReportRdfWriter(Lang.TTL))
-			.write(new ValidationReport(validationResults), new FileOutputStream(outputFile));
+			.write(new ValidationReport(validationResults), new FileOutputStream(outputFile), Locale.getDefault());
 		}		
 	}
 }
